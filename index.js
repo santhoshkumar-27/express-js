@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path');
 const app = express()
 
+// for purpose of static and middleware
 // for serving static contents for client side
 app.use(express.static('./public'))
 
