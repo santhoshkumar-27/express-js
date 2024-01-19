@@ -12,6 +12,13 @@ app.get('/', (req, res) => {
     `)
 })
 
+app.get('/api/data', (req, res) => {
+    // don't send the all the data for a list
+    // res.json(data);
+
+    res.json(data.map(({userId, id, title}) => ({userId, id, title})))
+})
+
 app.all('*', (req, res) => {
     res.writeHead(404, {
         "content-type": 'text/html'
