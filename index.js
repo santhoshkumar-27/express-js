@@ -16,8 +16,22 @@ app.get('/api/data', (req, res) => {
     // don't send the all the data for a list
     // res.json(data);
 
-    res.json(data.map(({userId, id, title}) => ({userId, id, title})))
+    res.json(data.map(({ userId, id, title }) => ({ userId, id, title })))
 })
+
+
+app.get('/api/data/:id', (req, res) => {
+    const { id: requestedId } = req.params
+    const singleData = data.find((list) => list.id == requestedId);
+    if (singleData) {
+        res.json(singleData);
+    } else {
+        res.json({
+            message: 'not found'
+        })
+    }
+})
+
 
 app.all('*', (req, res) => {
     res.writeHead(404, {
