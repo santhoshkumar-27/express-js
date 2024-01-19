@@ -19,7 +19,7 @@ app.get('/api/data', (req, res) => {
     res.json(data.map(({ userId, id, title }) => ({ userId, id, title })))
 })
 
-
+// route parameters
 app.get('/api/data/:id', (req, res) => {
     const { id: requestedId } = req.params
     const singleData = data.find((list) => list.id == requestedId);
@@ -30,6 +30,15 @@ app.get('/api/data/:id', (req, res) => {
             message: 'not found'
         })
     }
+})
+
+
+// complex id
+app.get('/api/data/:id/reviews/:reviewId', (req, res) => {
+    console.log('req.params', req.params)
+    res.json({
+        message: 'not found'
+    })
 })
 
 
