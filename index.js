@@ -41,6 +41,11 @@ app.get('/api/data/:id/reviews/:reviewId', (req, res) => {
     })
 })
 
+// query string parametes or url string parameters
+app.get('/api/v1/query', (req, res) => {
+
+});
+
 
 app.all('*', (req, res) => {
     res.writeHead(404, {
