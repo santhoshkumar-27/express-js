@@ -33,7 +33,7 @@ app.get('/api/data/:id', (req, res) => {
 })
 
 
-// complex id
+// complex route parameters
 app.get('/api/data/:id/reviews/:reviewId', (req, res) => {
     console.log('req.params', req.params)
     res.json({
