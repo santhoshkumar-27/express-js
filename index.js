@@ -43,7 +43,20 @@ app.get('/api/data/:id/reviews/:reviewId', (req, res) => {
 
 // query string parametes or url string parameters
 app.get('/api/v1/query', (req, res) => {
+    console.log(req.query)
+    let { search, limit } = req.query
+    let filteredArray = JSON.parse(JSON.stringify(data))
 
+    if (search) {
+        search = search.toLowerCase()
+        filteredArray = (filteredArray|| []).filter((list) => list.title.toLowerCase().includes(search) ||
+        list.body.toLowerCase().includes(search))
+    }
+
+    if (limit) {
+        filteredArray = [... filteredArray.slice(0, limit)]
+    }
+    res.json(filteredArray)
 });
 
 
