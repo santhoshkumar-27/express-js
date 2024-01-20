@@ -23,6 +23,7 @@ app.get('/api/view', (req, res) => {
 })
 app.get('/api/data', (req, res) => {
     // res.json(data)
+    console.log(req.user)
     res.send(`
         <h1>data</h1>
     `)

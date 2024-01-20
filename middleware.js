@@ -6,8 +6,16 @@ const logger = (req, res, next) => {
 }
 
 const authenticate = (req, res, next) => {
-    console.log('authenticated')
-    next()
+    const { user } = req.query;
+    if (user === 'santhosh') {
+        req.user = {
+            name: 'santhosh',
+            authenticated: true,
+        }
+        return     next()
+
+    } 
+    return res.status(401).send('Not authorized');
 }
 
 module.exports = { logger, authenticate }
