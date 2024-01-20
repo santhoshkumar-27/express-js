@@ -1,10 +1,10 @@
 const express = require('express');
 const data = require('./mock-data/data')
-const logger = require('./middleware')
+const { logger, authenticate } = require('./middleware')
 const app = express();
 const port = 5000;
 
-app.use('/api', logger) // for specific route path apply for middle wares
+app.use('/api', logger) // for specific route start path apply for middle wares
 
 app.get('/', (req, res) => {
     // res.json(data)

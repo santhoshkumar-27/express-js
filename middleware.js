@@ -5,5 +5,9 @@ const logger = (req, res, next) => {
     next()
 }
 
+const authenticate = (req, res, next) => {
+    console.log('authenticated')
+    next()
+}
 
-module.exports = logger
+module.exports = { logger, authenticate }
