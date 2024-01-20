@@ -4,6 +4,11 @@ const { logger, authenticate } = require('./middleware')
 const app = express();
 const port = 5000;
 
+// req => middleware => res
+
+// 1. use vs route
+// 2. options - our own / express / third party
+
 // app.use('/api', logger) // for specific route start path apply for middle wares
 // order is matter to excuted
 app.use([logger, authenticate])
