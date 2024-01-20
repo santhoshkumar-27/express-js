@@ -17,7 +17,7 @@ app.get('/', logger ,(req, res) => {
         <h1>header</h1>
     `)
 })
-app.get('/about', (req, res) => {
+app.get('/about', logger ,(req, res) => {
     // res.json(data)
     res.send(`
         <h1>About</h1>
