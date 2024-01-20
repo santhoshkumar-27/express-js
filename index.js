@@ -5,7 +5,7 @@ const app = express();
 const port = 5000;
 
 // app.use('/api', logger) // for specific route start path apply for middle wares
-
+// order is matter to excuted
 app.use([logger, authenticate])
 
 app.get('/', (req, res) => {
