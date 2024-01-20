@@ -3,9 +3,13 @@ const data = require('./mock-data/data')
 const app = express();
 const port = 5000;
 
-app.get('/', (req, res) => {
+const logger = (req, res, next) => {
+    console.log(req.method, req.url, new Date().getFullYear());
+}
+
+app.get('/', logger ,(req, res) => {
     // res.json(data)
-    console.log(req.method, req.url, new Date().getFullYear())
+    // console.log(req.method, req.url, new Date().getFullYear()); // need to console every incoming req
     res.send(`
         <h1>header</h1>
     `)
