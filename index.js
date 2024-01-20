@@ -45,7 +45,7 @@ app.get('/api/data/:id/reviews/:reviewId', (req, res) => {
 app.get('/api/v1/query', (req, res) => {
     console.log(req.query)
     let { search, limit } = req.query
-    let filteredArray = JSON.parse(JSON.stringify(data))
+    let filteredArray = JSON.parse(JSON.stringify(data)) || [];
 
     if (search) {
         search = search.toLowerCase()
@@ -56,7 +56,15 @@ app.get('/api/v1/query', (req, res) => {
     if (limit) {
         filteredArray = [... filteredArray.slice(0, limit)]
     }
-    res.json(filteredArray)
+
+    if (!filteredArray.length) {
+        return res.json({
+            lists: filteredArray
+        })
+    }
+    return res.json({
+        lists: filteredArray
+    })
 });
 
 
