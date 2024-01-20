@@ -4,22 +4,33 @@ const logger = require('./middleware')
 const app = express();
 const port = 5000;
 
-app.use(logger)
+app.use('/api', logger) // for specific route path apply for middle wares
 
-app.get('/',(req, res) => {
+app.get('/', (req, res) => {
     // res.json(data)
     // console.log(req.method, req.url, new Date().getFullYear()); // need to console every incoming req
     res.send(`
         <h1>header</h1>
     `)
 })
-app.get('/about',(req, res) => {
+app.get('/api/view', (req, res) => {
     // res.json(data)
     res.send(`
         <h1>About</h1>
     `)
 })
-
+app.get('/api/data', (req, res) => {
+    // res.json(data)
+    res.send(`
+        <h1>data</h1>
+    `)
+})
+app.get('/about', (req, res) => {
+    // res.json(data)
+    res.send(`
+        <h1>About</h1>
+    `)
+})
 app.all('*', (req, res) => {
     res.writeHead(404, {
         "content-type": 'text/html'
