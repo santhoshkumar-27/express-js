@@ -1,5 +1,6 @@
 const express = require('express');
 const data = require('./mock-data/data')
+const morgan = require('morgan')
 const { logger, authenticate } = require('./middleware')
 const app = express();
 const port = 5000;
@@ -12,6 +13,8 @@ const port = 5000;
 // app.use('/api', logger) // for specific route start path apply for middle wares
 // order is matter to excuted
 // app.use([logger, authenticate])
+
+app.use(morgan('tiny'))
 
 app.get('/', (req, res) => {
     // res.json(data)
@@ -26,7 +29,7 @@ app.get('/api/view', (req, res) => {
         <h1>About</h1>
     `)
 })
-app.get('/api/data', [logger, authenticate] ,(req, res) => {
+app.get('/api/data', [authenticate] ,(req, res) => {
     // res.json(data)
     console.log(req.user)
     res.send(`
