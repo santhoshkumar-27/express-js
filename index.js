@@ -11,7 +11,7 @@ const port = 5000;
 
 // app.use('/api', logger) // for specific route start path apply for middle wares
 // order is matter to excuted
-app.use([logger, authenticate])
+// app.use([logger, authenticate])
 
 app.get('/', (req, res) => {
     // res.json(data)
@@ -26,7 +26,7 @@ app.get('/api/view', (req, res) => {
         <h1>About</h1>
     `)
 })
-app.get('/api/data', (req, res) => {
+app.get('/api/data', [logger, authenticate] ,(req, res) => {
     // res.json(data)
     console.log(req.user)
     res.send(`
