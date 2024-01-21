@@ -3,19 +3,21 @@ let data = require('../mock-data/data');
 const routerPost = express.Router();
 const controller = require('../controllers/post')
 
-// read data
-routerPost.get('/', controller.getEntries)
-// read data by id
-routerPost.get('/:id', controller.getEntryById)
+// routerPost.get('/', controller.getEntries)
+// routerPost.get('/:id', controller.getEntryById)
+// routerPost.post('/', controller.createEntry)
+// routerPost.put('/:id', controller.updateEntryById)
+// routerPost.delete('/:id', controller.deleteEntryById)
 
-// create a entry data
-routerPost.post('/', controller.createEntry)
 
-// update a data using put method
-routerPost.put('/:id', controller.updateEntryById)
+routerPost.route('/')
+.get(controller.getEntries)
+.post(controller.createEntry);
 
-// Delete the data
-routerPost.delete('/:id', controller.deleteEntryById)
+routerPost.route('/:id')
+.get(controller.getEntryById)
+.put(controller.updateEntryById)
+.delete(controller.deleteEntryById);
 
 
 module.exports = routerPost
