@@ -8,13 +8,17 @@ const bodyParser = require('body-parser')
 
 app.use('/', express.static(path.join(__dirname, '/public')))
 
+// parse the form data
 // app.use(express.urlencoded({extended: false}))
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
+// parse the body data
+app.use(express.json())
 
-// parse application/json
-app.use(bodyParser.json())
+// // parse application/x-www-form-urlencoded
+// app.use(bodyParser.urlencoded({ extended: false }))
+
+// // parse application/json
+// app.use(bodyParser.json())
 
 // read data
 app.get('/api/data', (req, res) => {
