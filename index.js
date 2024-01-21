@@ -107,6 +107,25 @@ app.put('/api/data/:id', (req, res) => {
     }
 })
 
+// Delete the data
+app.delete('/api/data/:id', (req, res) => {
+    const { id: requestedId } = req.params
+    let findedDataIndex = data.findIndex((list) => list.id == requestedId);
+    if (findedDataIndex < 0) {
+        return res, status(401).json({
+            message: 'not found'
+        })
+    }
+
+    try {
+        data.splice(findedDataIndex, 1)
+        res.json({ message: 'success' });
+    } catch (e) {
+        res.status(500).json({
+            message: 'failed to delete'
+        })
+    }
+})
 
 app.all('*', (req, res) => {
     res.writeHead(404, {
