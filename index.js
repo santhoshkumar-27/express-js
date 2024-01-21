@@ -63,10 +63,10 @@ app.post('/api/data', (req, res) => {
         return res.status(500).json({
             message: 'failed'
         })
-        
+
     }
-    const {id,userId } = data[data.length - 1]
-    const preparedArray =  {
+    const { id, userId } = data[data.length - 1]
+    const preparedArray = {
         title, body,
         id: id + 1,
         userId
@@ -77,6 +77,32 @@ app.post('/api/data', (req, res) => {
     } else {
         res.status(500).json({
             message: 'failed'
+        })
+    }
+})
+
+// update a data using put method
+app.put('/api/data/:id', (req, res) => {
+    const { id: requestedId } = req.params
+    let findedDataIndex = data.findIndex((list) => list.id == requestedId);
+    if (findedDataIndex < 0) {
+        return res, status(401).json({
+            message: 'not found'
+        })
+    }
+    const { title, body } = req.body;
+    let findedData = data[findedDataIndex];
+    findedData = {
+        ...findedData,
+        title: title || findedData.title,
+        body: body || findedData.body,
+    }
+    try {
+        data[findedDataIndex] = findedData;
+        res.json({ data: findedData, message: 'success' });
+    } catch (e) {
+        res.status(500).json({
+            message: 'failed to updated'
         })
     }
 })
